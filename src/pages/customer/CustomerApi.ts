@@ -1,3 +1,5 @@
+import Customer from './Customer';
+
 export function searchCustomer() {
   if (!localStorage['customers']) {
     localStorage['customers'] = '[]';
@@ -9,9 +11,7 @@ export function searchCustomer() {
 
 export const searchCustomerById = (id: string) => {
   let customers = searchCustomer();
-  console.log(customers);
-  let result = customers.find((customer: any) => customer.id == id);
-  console.log(result);
+  let result = customers.find((customer: any) => customer.id === id);
   return result;
 };
 
@@ -22,13 +22,13 @@ export const removeCustomer = (id: string) => {
   localStorage['customers'] = JSON.stringify(customers);
 };
 
-export function saveCustomer(customer: any) {
+export function saveCustomer(customer: Customer) {
   let customers = searchCustomer();
   if (customer.id) {
-    let index = customers.findIndex((c: any) => c.id == customer.id);
+    let index = customers.findIndex((c: any) => c.id === customer.id);
     customers[index] = customer;
   } else {
-    customer.id = Math.round(Math.random() * 100000);
+    customer.id = String(Math.round(Math.random() * 100000));
     customers.push(customer);
   }
   localStorage['customers'] = JSON.stringify(customers);

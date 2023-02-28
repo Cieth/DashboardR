@@ -18,22 +18,23 @@ import {
 import { checkmark } from 'ionicons/icons';
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router';
+import Customer from './Customer';
 import { saveCustomer, searchCustomerById } from './CustomerApi';
 import './CustomerList.css';
 const CustomerEdit: React.FC = () => {
   const { name, id } = useParams<{ name: string; id: string }>();
   const history = useHistory();
-  const [customer, setCustomer] = useState<any>({});
+  const [customer, setCustomer] = useState<Customer>({});
 
   const save = () => {
     saveCustomer(customer);
-    setCustomer({});
     history.push('/page/customers');
   };
 
   const search = () => {
     if (id === 'new') {
       setCustomer({});
+      console.log('acutalziacao');
     } else {
       const result = searchCustomerById(id);
       setCustomer(result);
@@ -41,7 +42,7 @@ const CustomerEdit: React.FC = () => {
   };
   useEffect(() => {
     search();
-  }, []);
+  }, [history.location.pathname]);
 
   return (
     <IonPage>
@@ -64,7 +65,9 @@ const CustomerEdit: React.FC = () => {
               <IonItem>
                 <IonLabel position='stacked'>Nombre</IonLabel>
                 <IonInput
-                  onIonChange={(e) => (customer.firstName = e.detail.value)}
+                  onIonChange={(e) =>
+                    (customer.firstName = String(e.detail.value))
+                  }
                   value={customer.firstName}
                   placeholder='Enter your name'
                 ></IonInput>
@@ -74,7 +77,9 @@ const CustomerEdit: React.FC = () => {
               <IonItem>
                 <IonLabel position='stacked'>Apellido</IonLabel>
                 <IonInput
-                  onIonChange={(e) => (customer.lastName = e.detail.value)}
+                  onIonChange={(e) =>
+                    (customer.lastName = String(e.detail.value))
+                  }
                   value={customer.lastName}
                   placeholder='Enter your last name'
                 ></IonInput>
@@ -86,7 +91,7 @@ const CustomerEdit: React.FC = () => {
               <IonItem>
                 <IonLabel position='stacked'>Email</IonLabel>
                 <IonInput
-                  onIonChange={(e) => (customer.email = e.detail.value)}
+                  onIonChange={(e) => (customer.email = String(e.detail.value))}
                   value={customer.email}
                   placeholder='Enter your email'
                 ></IonInput>
@@ -96,7 +101,9 @@ const CustomerEdit: React.FC = () => {
               <IonItem>
                 <IonLabel position='stacked'>Dirección</IonLabel>
                 <IonInput
-                  onIonChange={(e) => (customer.address = e.detail.value)}
+                  onIonChange={(e) =>
+                    (customer.address = String(e.detail.value))
+                  }
                   value={customer.address}
                   placeholder='Enter your address'
                 ></IonInput>
@@ -108,7 +115,7 @@ const CustomerEdit: React.FC = () => {
               <IonItem>
                 <IonLabel position='stacked'>Teléfono</IonLabel>
                 <IonInput
-                  onIonChange={(e) => (customer.phone = e.detail.value)}
+                  onIonChange={(e) => (customer.phone = String(e.detail.value))}
                   value={customer.phone}
                   placeholder='Enter your phone number'
                 ></IonInput>
