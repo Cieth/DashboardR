@@ -1,0 +1,7 @@
+{
+  "name": "dashboardreact",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
