@@ -4,7 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
-
+/android
+android
+.android
 # testing
 /coverage
 

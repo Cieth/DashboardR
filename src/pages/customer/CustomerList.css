@@ -1,0 +1,15 @@
+.table{
+    padding: 10px 5px;
+    font-size: 16px;
+}
+.table ion-row:nth-child(even){
+    background-color:#efefef;
+}
+.table tr:nth-child(odd){
+    background-color:#fff ;
+}
+.table ion-row:first-child{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+/* Path: src\pages\customer\CustomerList.js */
