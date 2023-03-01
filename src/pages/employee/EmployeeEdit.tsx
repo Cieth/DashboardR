@@ -18,25 +18,25 @@ import {
 import { checkmark } from 'ionicons/icons';
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router';
-import Customer from './Customer';
-import { saveCustomer, searchCustomerById } from './CustomerApi';
-import './CustomerList.css';
-const CustomerEdit: React.FC = () => {
+import Employee from './Employee';
+import { saveEmployee, searchEmployeeById } from './EmployeeApi';
+import './EmployeeList.css';
+const EmployeeEdit: React.FC = () => {
   const { name, id } = useParams<{ name: string; id: string }>();
   const history = useHistory();
-  const [customer, setCustomer] = useState<Customer>({});
+  const [employee, setemployee] = useState<Employee>({});
 
   const save = () => {
-    saveCustomer(customer);
-    history.push('/page/customers');
+    saveEmployee(employee);
+    history.push('/page/employees');
   };
 
   const search = () => {
     if (id === 'new') {
-      setCustomer({});
+      setemployee({});
     } else {
-      const result = searchCustomerById(id);
-      setCustomer(result);
+      const result = searchEmployeeById(id);
+      setemployee(result);
     }
   };
   useEffect(() => {
@@ -65,9 +65,9 @@ const CustomerEdit: React.FC = () => {
                 <IonLabel position='stacked'>Nombre</IonLabel>
                 <IonInput
                   onIonChange={(e) =>
-                    (customer.firstName = String(e.detail.value))
+                    (employee.firstName = String(e.detail.value))
                   }
-                  value={customer.firstName}
+                  value={employee.firstName}
                   placeholder='Enter your name'
                 ></IonInput>
               </IonItem>
@@ -77,9 +77,9 @@ const CustomerEdit: React.FC = () => {
                 <IonLabel position='stacked'>Apellido</IonLabel>
                 <IonInput
                   onIonChange={(e) =>
-                    (customer.lastName = String(e.detail.value))
+                    (employee.lastName = String(e.detail.value))
                   }
-                  value={customer.lastName}
+                  value={employee.lastName}
                   placeholder='Enter your last name'
                 ></IonInput>
               </IonItem>
@@ -90,8 +90,8 @@ const CustomerEdit: React.FC = () => {
               <IonItem>
                 <IonLabel position='stacked'>Email</IonLabel>
                 <IonInput
-                  onIonChange={(e) => (customer.email = String(e.detail.value))}
-                  value={customer.email}
+                  onIonChange={(e) => (employee.email = String(e.detail.value))}
+                  value={employee.email}
                   placeholder='Enter your email'
                 ></IonInput>
               </IonItem>
@@ -101,9 +101,9 @@ const CustomerEdit: React.FC = () => {
                 <IonLabel position='stacked'>Dirección</IonLabel>
                 <IonInput
                   onIonChange={(e) =>
-                    (customer.address = String(e.detail.value))
+                    (employee.address = String(e.detail.value))
                   }
-                  value={customer.address}
+                  value={employee.address}
                   placeholder='Enter your address'
                 ></IonInput>
               </IonItem>
@@ -114,8 +114,8 @@ const CustomerEdit: React.FC = () => {
               <IonItem>
                 <IonLabel position='stacked'>Teléfono</IonLabel>
                 <IonInput
-                  onIonChange={(e) => (customer.phone = String(e.detail.value))}
-                  value={customer.phone}
+                  onIonChange={(e) => (employee.phone = String(e.detail.value))}
+                  value={employee.phone}
                   placeholder='Enter your phone number'
                 ></IonInput>
               </IonItem>
@@ -135,4 +135,4 @@ const CustomerEdit: React.FC = () => {
   );
 };
 
-export default CustomerEdit;
+export default EmployeeEdit;
