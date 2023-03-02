@@ -17,31 +17,31 @@ import {
 import { add, close, pencil } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
-import Employee from './Employee';
-import { removeEmployee, searchEmployee } from './EmployeeApi';
-import './EmployeeList.css';
-const EmployeeList: React.FC = () => {
+import Vendor from './Vendor';
+import { removeVendor, searchVendor } from './VendorApi';
+import './VendorList.css';
+const VendorList: React.FC = () => {
   const { name } = useParams<{ name: string }>();
-  const [clients, setClients] = useState<Employee[]>([]);
+  const [vendors, setVendors] = useState<Vendor[]>([]);
   const history = useHistory();
   const search = () => {
-    const employees = searchEmployee();
-    setClients(employees);
+    const Vendors = searchVendor();
+    setVendors(Vendors);
   };
   useEffect(() => {
     search();
   }, [history.location.pathname]);
 
   const remove = (id: string) => {
-    removeEmployee(id);
+    removeVendor(id);
     search();
   };
 
-  const addEmployee = () => {
-    history.push('/page/employees/new');
+  const addVendor = () => {
+    history.push('/page/vendors/new');
   };
-  const editEmployee = (id: string) => {
-    history.push('/page/employees/' + id);
+  const editVendor = (id: string) => {
+    history.push('/page/vendors/' + id);
   };
 
   return (
@@ -51,21 +51,21 @@ const EmployeeList: React.FC = () => {
           <IonButtons slot='start'>
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>{name || 'Empleados'} </IonTitle>
+          <IonTitle>{name || 'Proveedores'} </IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent fullscreen>
         <IonCard>
-          <IonTitle>Gestión de Empleados </IonTitle>
+          <IonTitle>Gestión de Proveedores </IonTitle>
           <IonItem>
             <IonButton
-              onClick={addEmployee}
+              onClick={addVendor}
               color='primary'
               fill='solid'
               slot='end'
             >
-              Agregar Empleado
+              Agregar Proveedor
               <IonIcon icon={add} />
             </IonButton>
           </IonItem>
@@ -77,16 +77,16 @@ const EmployeeList: React.FC = () => {
               <IonCol>Dirección</IonCol>
               <IonCol>Acciones</IonCol>
             </IonRow>
-            {clients.map((client: Employee) => {
+            {vendors.map((vendor: Vendor) => {
               return (
-                <IonRow key={client.id}>
-                  <IonCol>{client.firstName + ' ' + client.lastName}</IonCol>
-                  <IonCol>{client.email}</IonCol>
-                  <IonCol>{client.phone}</IonCol>
-                  <IonCol>{client.address}</IonCol>
+                <IonRow key={vendor.id}>
+                  <IonCol>{vendor.firstName + ' ' + vendor.lastName}</IonCol>
+                  <IonCol>{vendor.email}</IonCol>
+                  <IonCol>{vendor.phone}</IonCol>
+                  <IonCol>{vendor.address}</IonCol>
                   <IonCol>
                     <IonButton
-                      onClick={() => editEmployee(String(client.id))}
+                      onClick={() => editVendor(String(vendor.id))}
                       color='primary'
                       fill='clear'
                       size='small'
@@ -94,7 +94,7 @@ const EmployeeList: React.FC = () => {
                       <IonIcon icon={pencil} slot='icon-only' />
                     </IonButton>
                     <IonButton
-                      onClick={() => remove(String(client.id))}
+                      onClick={() => remove(String(vendor.id))}
                       color='danger'
                       fill='clear'
                       size='small'
@@ -112,4 +112,4 @@ const EmployeeList: React.FC = () => {
   );
 };
 
-export default EmployeeList;
+export default VendorList;

@@ -30,15 +30,21 @@ interface AppPage {
 const appPages: AppPage[] = [
   {
     title: 'Clientes',
-    url: '/page/Customers',
+    url: '/page/customers',
     iosIcon: peopleOutline,
     mdIcon: people,
   },
   {
     title: 'Empleados',
     url: '/page/employees',
-    iosIcon: paperPlaneOutline,
-    mdIcon: paperPlaneSharp,
+    iosIcon: peopleOutline,
+    mdIcon: people,
+  },
+  {
+    title: 'Proveedores',
+    url: '/page/vendors',
+    iosIcon: peopleOutline,
+    mdIcon: people,
   },
 ];
 
