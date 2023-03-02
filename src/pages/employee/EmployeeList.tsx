@@ -20,13 +20,13 @@ import { useHistory, useParams } from 'react-router';
 import Employee from './Employee';
 import { removeEmployee, searchEmployee } from './EmployeeApi';
 import './EmployeeList.css';
-const CustomerList: React.FC = () => {
+const EmployeeList: React.FC = () => {
   const { name } = useParams<{ name: string }>();
   const [clients, setClients] = useState<Employee[]>([]);
   const history = useHistory();
   const search = () => {
-    const customers = searchEmployee();
-    setClients(customers);
+    const employees = searchEmployee();
+    setClients(employees);
   };
   useEffect(() => {
     search();
@@ -112,4 +112,4 @@ const CustomerList: React.FC = () => {
   );
 };
 
-export default CustomerList;
+export default EmployeeList;
