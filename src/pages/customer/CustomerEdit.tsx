@@ -31,11 +31,11 @@ const CustomerEdit: React.FC = () => {
     history.push('/page/customers');
   };
 
-  const search = () => {
+  const search = async () => {
     if (id === 'new') {
       setCustomer({});
     } else {
-      const result = searchCustomerById(id);
+      const result = await searchCustomerById(id);
       setCustomer(result);
     }
   };

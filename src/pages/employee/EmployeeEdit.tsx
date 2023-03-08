@@ -120,7 +120,18 @@ const EmployeeEdit: React.FC = () => {
                 ></IonInput>
               </IonItem>
             </IonCol>
-            <IonCol></IonCol>
+            <IonCol>
+              <IonItem>
+                <IonLabel position='stacked'>Salario</IonLabel>
+                <IonInput
+                  onIonChange={(e) =>
+                    (employee.salary = Number(e.detail.value))
+                  }
+                  value={employee.salary}
+                  placeholder='Enter your phone number'
+                ></IonInput>
+              </IonItem>
+            </IonCol>
           </IonRow>
 
           <IonItem>

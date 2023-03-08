@@ -75,6 +75,7 @@ const EmployeeList: React.FC = () => {
               <IonCol>Email</IonCol>
               <IonCol>Teléfono</IonCol>
               <IonCol>Dirección</IonCol>
+              <IonCol>Salario</IonCol>
               <IonCol>Acciones</IonCol>
             </IonRow>
             {clients.map((client: Employee) => {
@@ -84,6 +85,7 @@ const EmployeeList: React.FC = () => {
                   <IonCol>{client.email}</IonCol>
                   <IonCol>{client.phone}</IonCol>
                   <IonCol>{client.address}</IonCol>
+                  <IonCol>{client.salary}</IonCol>
                   <IonCol>
                     <IonButton
                       onClick={() => editEmployee(String(client.id))}

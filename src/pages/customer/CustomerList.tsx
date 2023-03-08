@@ -25,8 +25,8 @@ const CustomerList: React.FC = () => {
   const { name } = useParams<{ name: string }>();
   const [clients, setClients] = useState<Customer[]>([]);
   const history = useHistory();
-  const search = () => {
-    const customers = searchCustomer();
+  const search = async () => {
+    const customers = await searchCustomer();
     setClients(customers);
   };
   useEffect(() => {
