@@ -70,8 +70,6 @@ const SupplierEdit: React.FC = () => {
                 ></IonInput>
               </IonItem>
             </IonCol>
-          </IonRow>
-          <IonRow>
             <IonCol>
               <IonItem>
                 <IonLabel position='stacked'>Email</IonLabel>
@@ -82,6 +80,8 @@ const SupplierEdit: React.FC = () => {
                 ></IonInput>
               </IonItem>
             </IonCol>
+          </IonRow>
+          <IonRow>
             <IonCol>
               <IonItem>
                 <IonLabel position='stacked'>Dirección</IonLabel>
@@ -94,8 +94,6 @@ const SupplierEdit: React.FC = () => {
                 ></IonInput>
               </IonItem>
             </IonCol>
-          </IonRow>
-          <IonRow>
             <IonCol>
               <IonItem>
                 <IonLabel position='stacked'>Teléfono</IonLabel>
@@ -106,7 +104,30 @@ const SupplierEdit: React.FC = () => {
                 ></IonInput>
               </IonItem>
             </IonCol>
-            <IonCol></IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonItem>
+                <IonLabel position='stacked'>Web</IonLabel>
+                <IonInput
+                  onIonChange={(e) => (supplier.web = String(e.detail.value))}
+                  value={supplier.web}
+                  placeholder='Enter your website'
+                ></IonInput>
+              </IonItem>
+            </IonCol>
+            <IonCol>
+              <IonItem>
+                <IonLabel position='stacked'>Contact</IonLabel>
+                <IonInput
+                  onIonChange={(e) =>
+                    (supplier.contact = String(e.detail.value))
+                  }
+                  value={supplier.contact}
+                  placeholder='Enter your contact'
+                ></IonInput>
+              </IonItem>
+            </IonCol>
           </IonRow>
 
           <IonItem>

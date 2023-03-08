@@ -75,6 +75,8 @@ const SupplierList: React.FC = () => {
               <IonCol>Email</IonCol>
               <IonCol>Teléfono</IonCol>
               <IonCol>Dirección</IonCol>
+              <IonCol>Web</IonCol>
+              <IonCol>Contact</IonCol>
               <IonCol>Acciones</IonCol>
             </IonRow>
             {suppliers.map((supplier: Supplier) => {
@@ -84,6 +86,8 @@ const SupplierList: React.FC = () => {
                   <IonCol>{supplier.email}</IonCol>
                   <IonCol>{supplier.phone}</IonCol>
                   <IonCol>{supplier.address}</IonCol>
+                  <IonCol>{supplier.web}</IonCol>
+                  <IonCol>{supplier.contact}</IonCol>
                   <IonCol>
                     <IonButton
                       onClick={() => editSupplier(String(supplier.id))}
