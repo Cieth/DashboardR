@@ -78,34 +78,35 @@ const CustomerList: React.FC = () => {
               <IonCol>Dirección</IonCol>
               <IonCol>Acciones</IonCol>
             </IonRow>
-            {clients.map((client: Customer) => {
-              return (
-                <IonRow key={client.id}>
-                  <IonCol>{client.firstName + ' ' + client.lastName}</IonCol>
-                  <IonCol>{client.email}</IonCol>
-                  <IonCol>{client.phone}</IonCol>
-                  <IonCol>{client.address}</IonCol>
-                  <IonCol>
-                    <IonButton
-                      onClick={() => editCustomer(String(client.id))}
-                      color='primary'
-                      fill='clear'
-                      size='small'
-                    >
-                      <IonIcon icon={pencil} slot='icon-only' />
-                    </IonButton>
-                    <IonButton
-                      onClick={() => remove(String(client.id))}
-                      color='danger'
-                      fill='clear'
-                      size='small'
-                    >
-                      <IonIcon icon={close} slot='icon-only' />
-                    </IonButton>
-                  </IonCol>
-                </IonRow>
-              );
-            })}
+            {clients.length > 0 &&
+              clients.map((client: Customer) => {
+                return (
+                  <IonRow key={client.id}>
+                    <IonCol>{client.firstname + ' ' + client.lastname}</IonCol>
+                    <IonCol>{client.email}</IonCol>
+                    <IonCol>{client.phone}</IonCol>
+                    <IonCol>{client.address}</IonCol>
+                    <IonCol>
+                      <IonButton
+                        onClick={() => editCustomer(String(client.id))}
+                        color='primary'
+                        fill='clear'
+                        size='small'
+                      >
+                        <IonIcon icon={pencil} slot='icon-only' />
+                      </IonButton>
+                      <IonButton
+                        onClick={() => remove(String(client.id))}
+                        color='danger'
+                        fill='clear'
+                        size='small'
+                      >
+                        <IonIcon icon={close} slot='icon-only' />
+                      </IonButton>
+                    </IonCol>
+                  </IonRow>
+                );
+              })}
           </IonGrid>
         </IonCard>
       </IonContent>

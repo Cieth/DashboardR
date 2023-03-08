@@ -65,9 +65,9 @@ const CustomerEdit: React.FC = () => {
                 <IonLabel position='stacked'>Nombre</IonLabel>
                 <IonInput
                   onIonChange={(e) =>
-                    (customer.firstName = String(e.detail.value))
+                    (customer.firstname = String(e.detail.value))
                   }
-                  value={customer.firstName}
+                  value={customer.firstname}
                   placeholder='Enter your name'
                 ></IonInput>
               </IonItem>
@@ -77,9 +77,9 @@ const CustomerEdit: React.FC = () => {
                 <IonLabel position='stacked'>Apellido</IonLabel>
                 <IonInput
                   onIonChange={(e) =>
-                    (customer.lastName = String(e.detail.value))
+                    (customer.lastname = String(e.detail.value))
                   }
-                  value={customer.lastName}
+                  value={customer.lastname}
                   placeholder='Enter your last name'
                 ></IonInput>
               </IonItem>
