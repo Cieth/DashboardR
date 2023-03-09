@@ -33,8 +33,8 @@ const CustomerList: React.FC = () => {
     search();
   }, [history.location.pathname]);
 
-  const remove = (id: string) => {
-    removeCustomer(id);
+  const remove = async (id: string) => {
+    await removeCustomer(id);
     search();
   };
 
