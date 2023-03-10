@@ -26,8 +26,8 @@ const CustomerEdit: React.FC = () => {
   const history = useHistory();
   const [customer, setCustomer] = useState<Customer>({});
 
-  const save = () => {
-    saveCustomer(customer);
+  const save = async () => {
+    await saveCustomer(customer);
     history.push('/page/customers');
   };
 

@@ -24,16 +24,16 @@ const EmployeeList: React.FC = () => {
   const { name } = useParams<{ name: string }>();
   const [clients, setClients] = useState<Employee[]>([]);
   const history = useHistory();
-  const search = () => {
-    const employees = searchEmployee();
+  const search = async () => {
+    const employees = await searchEmployee();
     setClients(employees);
   };
   useEffect(() => {
     search();
   }, [history.location.pathname]);
 
-  const remove = (id: string) => {
-    removeEmployee(id);
+  const remove = async (id: string) => {
+    await removeEmployee(id);
     search();
   };
 
@@ -81,7 +81,7 @@ const EmployeeList: React.FC = () => {
             {clients.map((client: Employee) => {
               return (
                 <IonRow key={client.id}>
-                  <IonCol>{client.firstName + ' ' + client.lastName}</IonCol>
+                  <IonCol>{client.firstname + ' ' + client.lastname}</IonCol>
                   <IonCol>{client.email}</IonCol>
                   <IonCol>{client.phone}</IonCol>
                   <IonCol>{client.address}</IonCol>

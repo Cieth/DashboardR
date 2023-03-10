@@ -1,35 +1,45 @@
 import Employee from './Employee';
 
-export function searchEmployee() {
-  if (!localStorage['employees']) {
-    localStorage['employees'] = '[]';
-  }
-  let employees = localStorage['employees'];
-  employees = JSON.parse(employees);
-  return employees;
-}
+export const searchEmployee = async () => {
+  let url = process.env.REACT_APP_API + '/employee';
+  let response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
-export const searchEmployeeById = (id: string) => {
-  let employees = searchEmployee();
-  let result = employees.find((employee: any) => employee.id === id);
-  return result;
+  return await response.json();
 };
 
-export const removeEmployee = (id: string) => {
-  let employees = searchEmployee();
-  let index = employees.findIndex((employee: any) => employee.id === id);
-  employees.splice(index, 1);
-  localStorage['employees'] = JSON.stringify(employees);
+export const searchEmployeeById = async (id: string) => {
+  let url = process.env.REACT_APP_API + '/employee/' + id;
+  let response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return await response.json();
 };
 
-export function saveEmployee(employee: Employee) {
-  let employees = searchEmployee();
-  if (employee.id) {
-    let index = employees.findIndex((c: any) => c.id === employee.id);
-    employees[index] = employee;
-  } else {
-    employee.id = String(Math.round(Math.random() * 100000));
-    employees.push(employee);
-  }
-  localStorage['employees'] = JSON.stringify(employees);
-}
+export const removeEmployee = async (id: string) => {
+  let url = process.env.REACT_APP_API + '/employee/' + id;
+  await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
+export const saveEmployee = async (employee: Employee) => {
+  let url = process.env.REACT_APP_API + '/employee';
+  await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(employee),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
