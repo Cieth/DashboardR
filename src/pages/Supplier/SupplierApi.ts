@@ -8,14 +8,18 @@ export const searchSupplier = async () => {
       'Content-Type': 'application/json',
     },
   });
-
   return await response.json();
 };
 
 export const searchSupplierById = async (id: string) => {
-  let suppliers = await searchSupplier();
-  let result = suppliers.find((supplier: any) => supplier.id === id);
-  return result;
+  let url = process.env.REACT_APP_API + '/supplier/' + id;
+  let response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return await response.json();
 };
 
 export const removeSupplier = async (id: string) => {

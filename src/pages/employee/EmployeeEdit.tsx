@@ -24,7 +24,7 @@ import './EmployeeList.css';
 const EmployeeEdit: React.FC = () => {
   const { name, id } = useParams<{ name: string; id: string }>();
   const history = useHistory();
-  const [employee, setemployee] = useState<Employee>({});
+  const [employee, setEmployee] = useState<Employee>({});
 
   const save = () => {
     saveEmployee(employee);
@@ -33,10 +33,10 @@ const EmployeeEdit: React.FC = () => {
 
   const search = async () => {
     if (id === 'new') {
-      setemployee({});
+      setEmployee({});
     } else {
       const result = await searchEmployeeById(id);
-      setemployee(result);
+      setEmployee(result);
     }
   };
   useEffect(() => {
