@@ -31,11 +31,11 @@ const SupplierEdit: React.FC = () => {
     history.push('/page/Suppliers');
   };
 
-  const search = () => {
+  const search = async () => {
     if (id === 'new') {
       setSupplier({});
     } else {
-      const result = searchSupplierById(id);
+      const result = await searchSupplierById(id);
       setSupplier(result);
     }
   };

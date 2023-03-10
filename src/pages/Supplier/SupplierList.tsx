@@ -24,16 +24,16 @@ const SupplierList: React.FC = () => {
   const { name } = useParams<{ name: string }>();
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
   const history = useHistory();
-  const search = () => {
-    const suppliers = searchSupplier();
+  const search = async () => {
+    const suppliers = await searchSupplier();
     setSuppliers(suppliers);
   };
   useEffect(() => {
     search();
   }, [history.location.pathname]);
 
-  const remove = (id: string) => {
-    removeSupplier(id);
+  const remove = async (id: string) => {
+    await removeSupplier(id);
     search();
   };
 
@@ -69,7 +69,7 @@ const SupplierList: React.FC = () => {
               <IonIcon icon={add} />
             </IonButton>
           </IonItem>
-          <IonGrid fixed={true} className='table'>
+          <IonGrid fixed={false} className='table'>
             <IonRow>
               <IonCol>Nombre</IonCol>
               <IonCol>Email</IonCol>

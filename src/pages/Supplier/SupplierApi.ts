@@ -1,35 +1,40 @@
 import Supplier from './Supplier';
 
-export function searchSupplier() {
-  if (!localStorage['Suppliers']) {
-    localStorage['Suppliers'] = '[]';
-  }
-  let suppliers = localStorage['Suppliers'];
-  suppliers = JSON.parse(suppliers);
-  return suppliers;
-}
+export const searchSupplier = async () => {
+  let url = process.env.REACT_APP_API + '/supplier';
+  let response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
-export const searchSupplierById = (id: string) => {
-  let suppliers = searchSupplier();
+  return await response.json();
+};
+
+export const searchSupplierById = async (id: string) => {
+  let suppliers = await searchSupplier();
   let result = suppliers.find((supplier: any) => supplier.id === id);
   return result;
 };
 
-export const removeSupplier = (id: string) => {
-  let suppliers = searchSupplier();
-  let index = suppliers.findIndex((supplier: any) => supplier.id === id);
-  suppliers.splice(index, 1);
-  localStorage['Suppliers'] = JSON.stringify(suppliers);
+export const removeSupplier = async (id: string) => {
+  let url = process.env.REACT_APP_API + '/supplier/' + id;
+  await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 };
 
-export function saveSupplier(supplier: Supplier) {
-  let suppliers = searchSupplier();
-  if (supplier.id) {
-    let index = suppliers.findIndex((c: any) => c.id === supplier.id);
-    suppliers[index] = supplier;
-  } else {
-    supplier.id = String(Math.round(Math.random() * 100000));
-    suppliers.push(supplier);
-  }
-  localStorage['Suppliers'] = JSON.stringify(suppliers);
-}
+export const saveSupplier = async (supplier: Supplier) => {
+  let url = process.env.REACT_APP_API + '/supplier';
+  await fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(supplier),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
